@@ -1,7 +1,9 @@
 import React from 'react';
 
-const App = () => {
-  return <div>React Starter Kit in TypeScript</div>;
+const App: React.FC = (props: any) => {
+  const { message } = props;
+  console.log(props)
+  return <div>tt</div>;
 };
 
 export default App;

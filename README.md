@@ -1,34 +1,42 @@
-# React Starter Kit in TypeScript
+# TypeScript + Reactについて
 
-## Node のインストール方法
+## React.FC
+関数コンポーネントの宣言
 
-本アプリケーションは [Node.js](https://nodejs.org/) を前提としています。macOS の場合だと以下の手順で導入できます。Node のバージョンは`.node-version`を参照し、同じものを使用してください。
+## void型
+何も返さないという意味
 
-    $ wget -P /tmp https://nodejs.org/download/release/v12.14.1/node-v12.14.1.pkg
-    $ sudo installer -pkg /tmp/node-v12.14.1.pkg -target /
-    installer: Package name is Node.js
-    installer: Upgrading at base path /
-    installer: The upgrade was successful.
-    $ node -v
-    v12.14.1
+## any型
+なんでもいいという意味
+**基本的にあまり使わない**  
+`const hoge = (a: number, b: boolean) : number => {`というふうになる  
+**ab仮引数**であり**そのあとの型は返り値で欲しい型**
 
-## アプリケーションの起動方法(Dockerを使用しない場合)
+## array型
+配列の型  
+##### 文字列の配列が欲しい場合
+`const aa: string[] = ["aa", "b"]`と後ろに大括弧をつけるだけ  
 
-本プロジェクトは、[create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) により作成したアプリケーションから React の学習に最低限必要な機能のみを厳選し、軽量化したものです。
-以下の手順でアプリケーションを起動できます。
+## object
+オブジェクトの型を作るとき -> **Interfaceを使用する**  
+	interface Hoge {
+	a: number,
+	b: number,
+	...
+	}
+↓
+`let v: Hoge = {a: 10, b: 20}`となる
+**interfaceは多用する**
 
-    $ wget https://github.com/DiveIntoHacking/react-starter-kit-in-typescript-with-node-v12.14.1/archive/v1.5.tar.gz
-    $ tar zxvf v1.5.tar.gz
-    $ cd react-starter-kit-in-typescript-with-node-v12.14.1-1.2
-    $ yarn install
-    $ yarn start
+## undefined 
+入ってくるかもしれない時に使う  
+interfaceの部分のb: number -> b?: numberと**?を記述することが必要になる**
 
-## アプリケーションの起動方法(Dockerを使用する場合)
+## null 
+何もないかもしれない時に使う
+interfaceの部分のb: number -> b: number | null と**nullを記述することが必要になる**  
+### undefinedはキーがなくてもいいがnullは必要
 
-    $ wget https://github.com/DiveIntoHacking/react-starter-kit-in-typescript-with-node-v12.14.1/archive/v1.5.tar.gz
-    $ tar zxvf v1.5.tar.gz
-    $ cd react-starter-kit-in-typescript-with-node-v12.14.1-1.1
-    $ touch .bash_history
-    $ docker-compose build
-    $ docker-compose run --rm app yarn install
-    $ docker-compose up
+## 分割代入
+`const { message } = props;` -> このように書くことによって**オブジェクトのメッセージのみを取り出せる**  
+
